@@ -24,9 +24,9 @@ for ball in balls:
     y = random.randint(0, 270)
     ball.goto(x, y)
     ball.dy = 0
-    dx = random.randint(-2,2)
+    dx = random.randint(-3,3)
     if dx == 0:
-        ball.dx = 2
+        ball.dx = random.randint(-3,3)
     else:
         ball.dx = dx
 
@@ -41,14 +41,16 @@ while True:
 
         ball.setx(ball.xcor() + ball.dx)
 
-        if ball.ycor() < -270 or ball.ycor() > 270:
-            ball.dy *= -1
+        if ball.ycor() < -270:
+            ball.dy *= -0.95
+            ball.sety(-270)
 
-        if ball.ycor() < -280:
-            ball.goto(random.randint(-290,290), random.randint(0, 270))
-            ball.dy = 0
+        if ball.xcor() > 300:
+            ball.dx *= -0.95
+            ball.setx(300)
 
-        if ball.xcor() > 300 or ball.xcor() < -300:
-            ball.dx *= -1
+        if ball.xcor() < -300:
+            ball.dx *= -0.95
+            ball.setx(-300)
 
 screen.mainloop()
