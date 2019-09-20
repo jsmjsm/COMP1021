@@ -28,7 +28,7 @@ gravity = 0.1
 def SpeedUp():
     for ball in balls:
         ball.dy += random.randint(2,4)
-        ball.dx += 0.1
+        ball.dx *= 1.05
 
 wn.onkey(SpeedUp, 'space')
 wn.listen()
