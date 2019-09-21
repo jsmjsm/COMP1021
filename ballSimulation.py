@@ -28,7 +28,7 @@ gravity = 0.15
 def SpeedUp():
     for ball in balls:
         ball.dy += random.randint(2,4)
-        ball.dx += random.randint(-10,10)/10
+        ball.dx += random.randint(-15,15)/10
 
 wn.onkey(SpeedUp, 'space')
 wn.listen()
@@ -67,20 +67,20 @@ while True:
 
         # Change direction when hitting a corner and decrease speed by 10%
         if ball.ycor() < -275:
-            ball.dy *= -0.9
+            ball.dy *= -0.925
             ball.dx *= 0.998
             ball.sety(-275)
 
         if ball.ycor() > 270:
-            ball.dy *= -0.9
+            ball.dy *= -0.925
             ball.sety(270)
 
         if ball.xcor() > 300:
-            ball.dx *= -0.9
+            ball.dx *= -0.925
             ball.setx(300)
 
         if ball.xcor() < -300:
-            ball.dx *= -0.9
+            ball.dx *= -0.925
             ball.setx(-300)
 
-screen.mainloop()
+wn.mainloop()
