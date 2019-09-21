@@ -22,13 +22,13 @@ ballNum = int(turtle.textinput("Simulator Settings", "Please enter the number of
 balls = []
 colors = ["red", "green", "blue", "white", "purple", "yellow"]
 
-gravity = 0.1
+gravity = 0.15
 
 # Increase speed when spacebar is pressed
 def SpeedUp():
     for ball in balls:
         ball.dy += random.randint(2,4)
-        ball.dx *= 1.05
+        ball.dx += random.randint(-10,10)/10
 
 wn.onkey(SpeedUp, 'space')
 wn.listen()
@@ -39,7 +39,7 @@ for i in range(ballNum):
 
 # Ball properties
 for ball in balls:
-    ball.color(colors[random.randint(0,len(colors)-1)])
+    ball.color(random.choice(colors))
     ball.penup()
     ball.shape("circle")
     ball.speed(0)
@@ -66,9 +66,10 @@ while True:
         ball.setx(ball.xcor() + ball.dx)
 
         # Change direction when hitting a corner and decrease speed by 10%
-        if ball.ycor() < -270:
+        if ball.ycor() < -275:
             ball.dy *= -0.9
-            ball.sety(-270)
+            ball.dx *= 0.998
+            ball.sety(-275)
 
         if ball.ycor() > 270:
             ball.dy *= -0.9
