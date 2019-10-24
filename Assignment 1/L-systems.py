@@ -1,6 +1,10 @@
 # Name: Sahil Daswani, ID: 20630681
 import turtle
 
+# Window setting
+wn = turtle.Screen()
+wn.title("L-System Patterns")
+
 # Turn off animation
 turtle.tracer(False)
 
