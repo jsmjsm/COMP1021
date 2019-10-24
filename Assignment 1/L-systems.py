@@ -1,6 +1,8 @@
 # Name: Sahil Daswani, ID: 20630681
-
 import turtle
+
+# Turn off animation
+turtle.tracer(False)
 
 # Menu
 print()
@@ -24,8 +26,8 @@ print("q - Beehive")
 print()
 
 lsystemOption = input("Select one of the 17 L-systems - Input a letter from a to q: ")
-iterationOption = input("Select the number for iterations (Input '-' for the default): ")
-#printingOption = input("Input '1' to print L-system string and '2' to print L-system image: ")
+iterationOption: str = input("Select the number for iterations (Input '-' for the default): ")
+printingOption = input("Input '1' to print L-system string and '2' to print L-system image: ")
 
 # Initial strings, rules, lengths, angles and default iterations
 lsystem_string = ["FX",
@@ -80,11 +82,11 @@ stack = []
 
 # Initializing Parameters
 forwardLetters = "ABCDEF"
+noDrawForwardLetters = "GHIJKL"
 
 # Get the index of the lsystem option
 optionLetters = "abcdefghijklmnopq"
 index = optionLetters.index(lsystemOption)
-print(index)
 
 # Apply L-system rules to the initial string
 def ChangeLsystemString(iterations):
@@ -116,33 +118,43 @@ turtle.goto(starting_position[index])
 turtle.setheading(starting_angle[index])
 turtle.down()
 
-# Add color index array
+# Color index array
 color_digits = []
 for i in range(len(lsystem_colours[index])):
     color_digits.append(str(i))
 
 # Draw the final L-system string
-for letter in lsystem_string[index]:
-    for forwardLetter in forwardLetters:
-        if letter == forwardLetter:
-            turtle.forward(lsystem_length[index])
-    if letter == "+":
-        turtle.left(lsystem_angle[index])
-    elif letter == "-":
-        turtle.right(lsystem_angle[index])
-    elif letter == "^":
-        turtle.right(180)
-    elif letter == "[":
-        item = [turtle.position(), turtle.heading()]
-        stack.append(item)
-    elif letter == "]":
-        item = stack.pop()
-        turtle.goto(item[0])
-        turtle.setheading(item[1])
-    elif letter in color_digits:
-        turtle.color(lsystem_colours[index][int(letter)])
+if printingOption == "2":
+    for letter in lsystem_string[index]:
+        for forwardLetter in forwardLetters:
+            if letter == forwardLetter:
+                turtle.forward(lsystem_length[index])
+        for noForwardLetter in noDrawForwardLetters:
+            if letter == noForwardLetter:
+                turtle.up()
+                turtle.forward(lsystem_length[index])
+                turtle.down()
+        if letter == "+":
+            turtle.left(lsystem_angle[index])
+        elif letter == "-":
+            turtle.right(lsystem_angle[index])
+        elif letter == "^":
+            turtle.right(180)
+        elif letter == "[":
+            item = [turtle.position(), turtle.heading()]
+            stack.append(item)
+        elif letter == "]":
+            item = stack.pop()
+            turtle.goto(item[0])
+            turtle.setheading(item[1])
+        elif letter in color_digits:
+            turtle.color(lsystem_colours[index][int(letter)])
+else:
+    print(lsystem_string[index])
 
 # Hide the turtle after the drawing is finished
 turtle.hideturtle()
 
+# update animation
+turtle.tracer(True)
 turtle.done()
