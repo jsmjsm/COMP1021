@@ -10,12 +10,7 @@ print("Welcome to the Python sketchbook!")
 
 # Initialize the option to empty in order to enter the while loop
 option = ""
-
 colorfill = ""
-
-if colorfill != "none":
-    turtle.fillcolor(colorfill)
-    turtle.begin_fill()
 
 while option != "q": # While the option is not "q"
     print()
@@ -29,11 +24,16 @@ while option != "q": # While the option is not "q"
     print("p - Change the pen colour of the turtle")
     print("f - Change the fill colour of the turtle")
     print("q - Quit the program")
+    
     print("s - Speed of the turtle")
 
-    turtle.begin_fill()
-
     option = input("Please input your option: ")
+
+    turtle.begin_fill()
+    if colorfill == "none":
+        colorfill = ""
+    else:
+        turtle.fillcolor(colorfill)
 
     ##### Handle the move option
     if option == "m":
@@ -53,9 +53,6 @@ while option != "q": # While the option is not "q"
     ##### Handle the rotate option
     if option == "t":
         print()
-
-        #
-        # Please put your code here
         angle = int(input("Please enter the angle of rotation: "))
 
         turtle.left(angle)
@@ -76,9 +73,6 @@ while option != "q": # While the option is not "q"
     ##### Handle the rectangle option
     if option == "r":
         print()
-
-        #
-        # Please put your code here
         height = int(input("Please enter the height of the rectangle: "))
         width = int(input("Please enter the width of the rectangle: "))
 
@@ -91,9 +85,6 @@ while option != "q": # While the option is not "q"
     ##### Handle the circle option
     if option == "c":
         print()
-
-        #
-        # Please put your code here
         radius = int(input("Please enter the radius of the circle: "))
 
         turtle.circle(radius)
@@ -110,20 +101,15 @@ while option != "q": # While the option is not "q"
     ##### Handle the fill colour option
     if option == "f":
         print()
-
-        #
-        # Please put your code here
         colorfill = input("Please enter a colour name (type 'none' to clear the colour): ")
 
-
-    turtle.end_fill()
-
+        if colorfill != "none" or colorfill != "":
+            turtle.begin_fill()
+        elif colorfill == "none":
+            turtle.end_fill()
+            
     if option == "s":
         print()
-
-        #
-        # Please put your code here
         speed = int(input("Choose speed of the turtle (0 is maximum): "))
         turtle.speed(speed)
-
 turtle.done()
