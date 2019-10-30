@@ -5,9 +5,6 @@ import turtle
 wn = turtle.Screen()
 wn.title("L-System Patterns")
 
-# Turn off animation
-turtle.tracer(False)
-
 # Menu
 print()
 print("a - Dragon curve")
@@ -115,6 +112,8 @@ else:
 turtle.setup(800, 600)
 turtle.speed(0)
 turtle.width(2)
+# Turn off animation
+turtle.tracer(False)
 
 # Move to an appropriate starting point
 turtle.up()
@@ -149,7 +148,9 @@ if printingOption == "2":
             stack.append(item)
         elif letter == "]":
             item = stack.pop()
+            turtle.up()
             turtle.goto(item[0])
+            turtle.down()
             turtle.setheading(item[1])
         elif letter in color_digits:
             turtle.color(lsystem_colours[index][int(letter)])
