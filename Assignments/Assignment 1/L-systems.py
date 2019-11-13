@@ -1,9 +1,7 @@
-# Name: Sahil Daswani, ID: 20630681
-import turtle
+# Name: Sahil Daswani
+# Student ID: 20630681
 
-# Window setting
-wn = turtle.Screen()
-wn.title("L-System Patterns")
+import turtle
 
 # Menu
 print()
@@ -107,19 +105,7 @@ if iterationOption != "-":
     ChangeLsystemString(int(iterationOption))
 else:
     ChangeLsystemString(lsystem_iterations[index])
-    
-# Initialize the turtle
-turtle.setup(800, 600)
-turtle.speed(0)
-turtle.width(2)
-# Turn off animation
-turtle.tracer(False)
 
-# Move to an appropriate starting point
-turtle.up()
-turtle.goto(starting_position[index])
-turtle.setheading(starting_angle[index])
-turtle.down()
 
 # Color index array
 color_digits = []
@@ -128,6 +114,21 @@ for i in range(len(lsystem_colours[index])):
 
 # Draw the final L-system string
 if printingOption == "2":
+    # Initialize the turtle
+    turtle.hideturtle()
+    turtle.setup(800, 600)
+    turtle.speed(0)
+    turtle.width(2)
+
+    # Turn off animation
+    turtle.tracer(False)
+
+    # Move to an appropriate starting point
+    turtle.up()
+    turtle.goto(starting_position[index])
+    turtle.setheading(starting_angle[index])
+    turtle.down()
+
     for letter in lsystem_string[index]:
         for forwardLetter in forwardLetters:
             if letter == forwardLetter:
@@ -154,12 +155,9 @@ if printingOption == "2":
             turtle.setheading(item[1])
         elif letter in color_digits:
             turtle.color(lsystem_colours[index][int(letter)])
-else:
+
+    # update animation
+    turtle.tracer(True)
+    turtle.done()
+elif printingOption == "1":
     print(lsystem_string[index])
-
-# Hide the turtle after the drawing is finished
-turtle.hideturtle()
-
-# update animation
-turtle.tracer(True)
-turtle.done()
